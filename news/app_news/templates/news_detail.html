@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{news.title}}</title>
+
+</head>
+<body>
+<h3>{{news.title}}</h3>
+<a>{{news.description}}</a>
+
+<h3>Комментарии</h3>
+{% if comments %}
+{% for comment in comments %}
+<p>{{comment.description}} ({{comment.user_name}})</p>
+{% endfor %}
+{% else %}
+<p>Комментариев пока нет</p>
+{% endif %}
+<p><button><a href="/comment_create/"> Добавить комментарий </a></button></p>
+<p><button><a href="/news_edit/{{ news.id }}/"> Редактировать новость </a></button>
+<button><a href="/news_list/"> На главную </a></button></p>
+</body>
+</html>
