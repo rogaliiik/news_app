@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from app_news.views import *
 
 
@@ -26,4 +26,5 @@ urlpatterns = [
     path('news_create/', NewsFormView.as_view()),
     path('news_edit/<int:news_id>/', NewsFormEditView.as_view()),
     path('comment_create/', CommentaryFormView.as_view()),
+    path('__debug__/', include('debug_toolbar.urls'))
 ]
