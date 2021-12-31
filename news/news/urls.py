@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from app_news.views import *
+from app_users.views import *
 
 
 urlpatterns = [
@@ -26,5 +27,7 @@ urlpatterns = [
     path('news_create/', NewsFormView.as_view()),
     path('news_edit/<int:news_id>/', NewsFormEditView.as_view()),
     path('comment_create/', CommentaryFormView.as_view()),
-    path('__debug__/', include('debug_toolbar.urls'))
+    path('__debug__/', include('debug_toolbar.urls')),
+    path('login/', LoginView.as_view(), name='login'),
+
 ]
