@@ -28,6 +28,6 @@ urlpatterns = [
     path('news_edit/<int:news_id>/', NewsFormEditView.as_view()),
     path('comment_create/', CommentaryFormView.as_view()),
     path('__debug__/', include('debug_toolbar.urls')),
-    path('login/', LoginView.as_view(), name='login'),
+    path('login/', login_view, name='login'),
 
 ]
