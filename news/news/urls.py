@@ -29,5 +29,6 @@ urlpatterns = [
     path('comment_create/', CommentaryFormView.as_view()),
     path('__debug__/', include('debug_toolbar.urls')),
     path('login/', login_view, name='login'),
+    path('quick_login/', QuickLoginView.as_view(), name='quick_login'),
 
 ]

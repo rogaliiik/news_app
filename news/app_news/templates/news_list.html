@@ -16,6 +16,13 @@
 <p>Новостей нет</p>
 {% endif %}
 <a href = '../news_create'>Добавить новость</a>
+
+{% if request.user.is_authenticated %}
+<h3> Вы авторизованы на сайте как {{request.user.username}} </h3>
+{% else %}
+<h3> Вы не авторизованы на сайте </h3>
 <a href = '../login'>Авторизация</a>
+{% endif %}
+
 </body>
 </html>

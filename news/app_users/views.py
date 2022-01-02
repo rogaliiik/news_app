@@ -3,7 +3,9 @@ from app_users.forms import AuthForm
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponseRedirect
 from django.views import View
+from django.contrib.auth.views import LoginView
 import datetime
+
 
 
 # class LoginView(View):
@@ -60,3 +62,7 @@ def login_view(request):
     else:
         auth_form = AuthForm()
     return render(request, 'login.html', {'form':auth_form})
+
+
+class QuickLoginView(LoginView):
+    template_name = 'login.html'
