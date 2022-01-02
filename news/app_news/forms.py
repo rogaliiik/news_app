@@ -9,8 +9,15 @@ class NewsForm(forms.ModelForm):
         fields = '__all__'
 
 
-class CommentaryForm(forms.ModelForm):
+class CommentaryFormNotAuth(forms.ModelForm):
 
     class Meta:
         model = Commentary
-        fields = '__all__'
+        fields = ['user_name', 'description']
+
+
+class CommentaryFormAuth(forms.ModelForm):
+
+    class Meta:
+        model = Commentary
+        fields = ['description']

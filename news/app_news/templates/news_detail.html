@@ -17,7 +17,7 @@
 {% else %}
 <p>Комментариев пока нет</p>
 {% endif %}
-<p><button><a href="/comment_create/"> Добавить комментарий </a></button></p>
+<p><button><a href="/comment_create/{{ news.id }}"> Добавить комментарий </a></button></p>
 <p><button><a href="/news_edit/{{ news.id }}/"> Редактировать новость </a></button>
 <button><a href="/news_list/"> На главную </a></button></p>
 </body>

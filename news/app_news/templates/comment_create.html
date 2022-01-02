@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title> Создать комментарий </title>
+    <h3>К новости</h3>
+    <p>{{ news }}</p>
 </head>
 <body>
-<form method="post" action="/comment_create/">
+<form method="post" action="/comment_create/{{ news.id }}">
 {% csrf_token %}
 {{comment_form.as_p}}
     <button type="submit" > Создать комментарий </button>

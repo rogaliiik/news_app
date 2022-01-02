@@ -137,8 +137,6 @@ STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGIN_REDIRECT_URL = '/'
-
 SESSION_COOKIE_AGE = 30 * 24 * 60 * 60
 
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True

@@ -26,9 +26,9 @@ urlpatterns = [
     path('news_list/<int:news_id>', NewsDetailView.as_view(), name='news_detail'),
     path('news_create/', NewsFormView.as_view()),
     path('news_edit/<int:news_id>/', NewsFormEditView.as_view()),
-    path('comment_create/', CommentaryFormView.as_view()),
+    path('comment_create/<int:news_id>', CommentaryFormView.as_view()),
     path('__debug__/', include('debug_toolbar.urls')),
     path('login/', login_view, name='login'),
-    path('quick_login/', QuickLoginView.as_view(), name='quick_login'),
+    path('logout/', LogoutView.as_view(), name='logout')
 
 ]

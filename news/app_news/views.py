@@ -4,7 +4,6 @@ from app_news.models import *
 from app_news.forms import *
 from django.http import HttpResponseRedirect, HttpResponse
 
-
 class Redirect(View):
     def get(self, request):
         return redirect('/news_list')
@@ -54,15 +53,30 @@ class NewsFormEditView(View):
 
 
 class CommentaryFormView(View):
-    def get(self, request):
-        comment_form = CommentaryForm()
-        return render(request, 'comment_create.html', {'comment_form':comment_form})
-
-    def post(self, request):
-        comment_form = CommentaryForm(request.POST)
-
-        if comment_form.is_valid():
-            Commentary.objects.create(**comment_form.cleaned_data)
-            return HttpResponseRedirect('..')
+    def get(self, request, news_id):
+        news = News.objects.get(id=news_id)
+        if request.user.is_authenticated:
+            comment_form = CommentaryFormAuth()
         else:
-            return render(request, 'comment_create.html', {'comment_form':comment_form})
+            comment_form = CommentaryFormNotAuth()
+        return render(request, 'comment_create.html', {'comment_form':comment_form, 'news':news})
+
+    def post(self, request, news_id):
+        news = News.objects.get(id=news_id)
+        if request.user.is_authenticated:
+            comment_form = CommentaryFormAuth(request.POST)
+            if comment_form.is_valid():
+                Commentary.objects.create(**comment_form.cleaned_data, user_name=request.user.username, user=request.user,
+                                          news=news)
+                return HttpResponseRedirect('/news_list/' + str(news_id))
+            else:
+                return render(request, 'comment_create.html', {'comment_form': comment_form, 'news':news})
+        else:
+            comment_form = CommentaryFormNotAuth(request.POST)
+            if comment_form.is_valid():
+                user_name = comment_form.cleaned_data['user_name']
+                description = comment_form.cleaned_data['description']
+                Commentary.objects.create(user_name = user_name + ' Гость', description=description, news=news)
+                return HttpResponseRedirect('/news_list/' + str(news_id))
+            else:
+                return render(request, 'comment_create.html', {'comment_form':comment_form, 'news':news})

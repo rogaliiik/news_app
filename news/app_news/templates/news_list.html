@@ -6,6 +6,7 @@
 </head>
 <body>
 {% if news %}
+<h2>Новости</h2>
 <ul>
 {% for n in news%}
     <li><a href="/news_list/{{ n.id }}">{{ n.title }}</a></li>
@@ -18,7 +19,8 @@
 <a href = '../news_create'>Добавить новость</a>
 
 {% if request.user.is_authenticated %}
-<h3> Вы авторизованы на сайте как {{request.user.username}} </h3>
+<h4> Вы авторизованы на сайте как {{request.user.username}} </h4>
+<a href="../logout">Выйти из учетной записи</a>
 {% else %}
 <h3> Вы не авторизованы на сайте </h3>
 <a href = '../login'>Авторизация</a>

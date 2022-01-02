@@ -27,7 +27,7 @@ class NewsAdmin(admin.ModelAdmin):
 
 @admin.register(Commentary)
 class CommentaryAdmin(admin.ModelAdmin):
-    list_display = ['id', 'status' , 'news', 'description', 'user_name', ]
+    list_display = ['id', 'status' , 'news', 'description', 'user_name', "user"]
     list_filter = ['user_name']
     search_fields = ['user_name', 'description']
     fieldsets = (
