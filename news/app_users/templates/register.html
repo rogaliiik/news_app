@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Регистрация</title>
+</head>
+<body>
+<h3>Введите данные для регистрации</h3>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" >
+        Зарегистрироваться
+    </button>
+</form>
+<p><a href="/news_list" >Вернуться на главную</a></p>
+
+</body>
+</html>

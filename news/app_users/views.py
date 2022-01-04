@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from app_users.forms import AuthForm
+from django.shortcuts import render, redirect
+from app_users.forms import *
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect
 from django.views import View
@@ -39,3 +39,18 @@ def login_view(request):
 
 class LogoutView(LogoutView):
     next_page = '/'
+
+
+def register_view(request):
+    if request.method == 'POST':
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
+            return redirect('/')
+    else:
+        form = RegisterForm(request.POST)
+    return render(request, 'register.html', {'form':form})

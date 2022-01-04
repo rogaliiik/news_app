@@ -29,6 +29,7 @@ urlpatterns = [
     path('comment_create/<int:news_id>', CommentaryFormView.as_view()),
     path('__debug__/', include('debug_toolbar.urls')),
     path('login/', login_view, name='login'),
-    path('logout/', LogoutView.as_view(), name='logout')
+    path('logout/', LogoutView.as_view(), name='logout'),
+    path('register/', register_view, name='register'),
 
 ]
