@@ -9,8 +9,13 @@ class AuthForm(forms.Form):
 
 
 class RegisterForm(UserCreationForm):
-    first_name = forms.CharField(max_length=30, required=False)
-    last_name = forms.CharField(max_length=30, required=False)
+    first_name = forms.CharField(max_length=30, required=False, help_text='Имя')
+    last_name = forms.CharField(max_length=30, required=False, help_text='Фамилия')
+    date_of_birth = forms.DateField(required=True, help_text='Дата рождения')
+    city = forms.CharField(max_length=50, required=True, help_text='Город')
+    phone_number = forms.CharField(required=True, help_text='Номер телефона')
+    card_number = forms.CharField(required=False, help_text='Номер карты лояльности')
+
 
     class Meta:
         model = User

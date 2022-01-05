@@ -21,6 +21,7 @@
 {% if request.user.is_authenticated %}
 <h4> Вы авторизованы на сайте как {{request.user.username}} </h4>
 <a href="/logout">Выйти из учетной записи</a>
+<a href="/account">Профиль</a>
 {% else %}
 <h3> Вы не авторизованы на сайте </h3>
 <a href = '/login'>Авторизация</a>

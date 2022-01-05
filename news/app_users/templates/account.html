@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Профиль</title>
+</head>
+<body>
+<h3>Профиль</h3>
+
+{% if user.is_authenticated %}
+<h4>Имя пользователя: {{ user.username }}</h4>
+
+    {% if user.email %}
+    <h4>Элетронная почта: {{ user.email }}</h4>
+    {% endif %}
+
+    {% if user.first_name %}
+    <h4>Имя: {{ user.first_name }}</h4>
+    {% endif %}
+
+    {% if user.last_name %}
+    <h4>Фамилия: {{ user.last_name }}</h4>
+    {% endif %}
+
+    {% if user.profile.date_of_birth %}
+    <h4>Дата рождения: {{ user.profile.date_of_birth }}</h4>
+    {% endif %}
+
+    {% if user.profile.city %}
+    <h4>Город: {{ user.profile.city }}</h4>
+    {% endif %}
+
+    {% if user.profile.phone_number %}
+    <h4>Номер телефона: {{ user.profile.phone_number }}</h4>
+    {% endif %}
+
+    {% if user.profile.card_number  %}
+    <h4>Номер карты лояльности: {{ user.profile.card_number }}</h4>
+    {% endif %}
+
+<a href="/logout">Выйти из учетной записи</a>
+{% else %}
+<h3> Вы не авторизованы </h3>
+{% endif %}
+<a href="/news_list">На главную</a>
+</body>
+</html>
