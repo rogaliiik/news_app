@@ -6,7 +6,7 @@ class NewsForm(forms.ModelForm):
 
     class Meta:
         model = News
-        fields = '__all__'
+        fields = ['title', 'description']
 
 
 class CommentaryFormNotAuth(forms.ModelForm):

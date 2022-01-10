@@ -8,15 +8,21 @@
 {% if news %}
 <h2>Новости</h2>
 <ul>
-{% for n in news%}
-    <li><a href="/news_list/{{ n.id }}">{{ n.title }}</a></li>
+    {% for n in news%}
+        {% if n.is_active %}
+        <li><a href="/news_list/{{ n.id }}">{{ n.title }}</a> {{ n.created_at }}
+            <p>{{ n.tags }}</p> </li>
+        {% endif %}
     {% endfor %}
 
 </ul>
 {% else %}
 <p>Новостей нет</p>
 {% endif %}
+
+{% if request.user.is_authenticated and perms.app_news.add_news %}
 <a href = '/news_create'>Добавить новость</a>
+{% endif %}
 
 {% if request.user.is_authenticated %}
 <h4> Вы авторизованы на сайте как {{request.user.username}} </h4>

@@ -5,12 +5,20 @@
     <title>Создать новость</title>
 </head>
 <body>
+
+{% if perms.app_news.add_news %}
+
 <h3> Создать новость </h3>
 <form method = 'post' action="/news_create/">
 {% csrf_token %}
 {{news_form.as_p}}
 <button type="submit"> Создать </button>
 </form>
+
+{% else %}
+<h3>Необходимо подтверждение модератора</h3>
+{% endif %}
+
 <p><a href="/"> Назад </a></p>
 </body>
 </html>

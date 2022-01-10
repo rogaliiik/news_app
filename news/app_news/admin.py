@@ -9,7 +9,7 @@ class CommentaryInline(admin.TabularInline):
 @admin.register(News)
 class NewsAdmin(admin.ModelAdmin):
     list_display = ['id', 'title', 'is_active', 'created_at', 'updated_at']
-    list_filter = ['is_active']
+    list_filter = ['is_active', 'created_at']
     inlines = [CommentaryInline]
     search_fields = ['title', 'description']
 

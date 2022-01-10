@@ -3,6 +3,7 @@ from django.views.generic import View, DetailView, ListView
 from app_news.models import *
 from app_news.forms import *
 from django.http import HttpResponseRedirect, HttpResponse
+from django.core.exceptions import PermissionDenied
 
 class Redirect(View):
     def get(self, request):

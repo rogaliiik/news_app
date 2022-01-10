@@ -11,7 +11,6 @@ from app_users.models import *
 def login_view(request):
     if request.method == 'POST':
         auth_form = AuthForm(request.POST)
-        now = datetime.datetime.now()
         if auth_form.is_valid():
 
             now = datetime.datetime.now()
@@ -49,16 +48,23 @@ def register_view(request):
             user = form.save()
             username = form.cleaned_data.get('username')
             raw_password = form.cleaned_data.get('password1')
+            first_name = form.cleaned_data.get('first_name')
+            last_name = form.cleaned_data.get('last_name')
+            email = form.cleaned_data.get('email')
             city = form.cleaned_data.get('city')
             date_of_birth = form.cleaned_data.get('date_of_birth')
             phone_number = form.cleaned_data.get('phone_number')
             card_number = form.cleaned_data.get('card_number')
             Profile.objects.create(
                 user=user,
+                first_name=first_name,
+                last_name=last_name,
+                email=email,
                 city=city,
                 date_of_birth=date_of_birth,
                 phone_number=phone_number,
                 card_number=card_number,
+
             )
             user = authenticate(username=username, password=raw_password)
             login(request, user)
