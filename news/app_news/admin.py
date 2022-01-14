@@ -48,3 +48,8 @@ class CommentaryAdmin(admin.ModelAdmin):
 
     delete_by_admin.short_description = 'Удалено администратором'
 
+
+@admin.register(Tag)
+class TagAdmin(admin.ModelAdmin):
+    list_display = ['name']
+    list_filter = ['news']

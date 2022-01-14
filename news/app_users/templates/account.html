@@ -10,6 +10,12 @@
 {% if user.is_authenticated %}
 <h4>Имя пользователя: {{ user.username }}</h4>
 
+    {% if perms.app_users.add_news %}
+    <h4>Ваш аккаунт верифицирован</h4>
+    {% else %}
+    <h4>Ваш аккаунт неверифицирован</h4>
+    {% endif %}
+
     {% if user.email %}
     <h4>Элетронная почта: {{ user.email }}</h4>
     {% endif %}

@@ -11,7 +11,7 @@
     {% for n in news%}
         {% if n.is_active %}
         <li><a href="/news_list/{{ n.id }}">{{ n.title }}</a> {{ n.created_at }}
-            <p>{{ n.tags }}</p> </li>
+            <p>Тэг: {{ n.tag }}</p> </li>
         {% endif %}
     {% endfor %}
 

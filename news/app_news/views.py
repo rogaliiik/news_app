@@ -25,24 +25,29 @@ class NewsDetailView(View):
 
 class NewsFormView(View):
     def get(self, request):
-        news_form = NewsForm()
-        return render(request, 'news_create.html', {'news_form':news_form})
+        if request.user.is_authenticated and request.user.has_perm(app_news.add_news):
+            news_form = NewsForm()
+            return render(request, 'news_create.html', {'news_form':news_form})
+        else:
+            return redirect('/news_list')
 
     def post(self, request):
         news_form = NewsForm(request.POST)
-
         if news_form.is_valid():
-            News.objects.create(**news_form.cleaned_data)
+            News.objects.create(**news_form.cleaned_data, user=request.user)
             return HttpResponseRedirect('/news_list')
         else:
-            return render(request, 'news_create.html', {'news_form':news_form})
+            return render(request, 'news_create.html', {'news_form':news_form})\
 
 
 class NewsFormEditView(View):
     def get(self, request, news_id):
         news = News.objects.get(id=news_id)
-        news_form = NewsForm(instance=news)
-        return render(request, 'news_edit.html', {'news_form':news_form, 'news_id':news_id})
+        if request.user == news.user:
+            news_form = NewsForm(instance=news)
+            return render(request, 'news_edit.html', {'news_form':news_form, 'news_id':news_id})
+        else:
+            return redirect(f'/news_list/{news_id}')
 
     def post(self, request, news_id):
         news = News.objects.get(id=news_id)
@@ -50,7 +55,7 @@ class NewsFormEditView(View):
 
         if news_form.is_valid():
             news.save()
-            return render(request, 'news_edit.html', context={'news_form': news_form, 'news_id':news_id})
+        return render(request, 'news_edit.html', context={'news_form': news_form, 'news_id':news_id})
 
 
 class CommentaryFormView(View):
