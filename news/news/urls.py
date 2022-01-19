@@ -32,4 +32,6 @@ urlpatterns = [
     path('logout/', LogoutView.as_view(), name='logout'),
     path('register/', register_view, name='register'),
     path('account/', AccountView.as_view(), name='account'),
+    path('files/', include('app_media.urls')),
+
 ]

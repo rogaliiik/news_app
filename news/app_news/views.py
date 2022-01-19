@@ -5,6 +5,7 @@ from app_news.forms import *
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.exceptions import PermissionDenied
 
+
 class Redirect(View):
     def get(self, request):
         return redirect('/news_list')
@@ -25,7 +26,7 @@ class NewsDetailView(View):
 
 class NewsFormView(View):
     def get(self, request):
-        if request.user.is_authenticated and request.user.has_perm(app_news.add_news):
+        if request.user.is_authenticated and request.user.has_perm('app_news.add_news'):
             news_form = NewsForm()
             return render(request, 'news_create.html', {'news_form':news_form})
         else:

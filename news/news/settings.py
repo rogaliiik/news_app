@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'app_news',
     'app_users',
+    'app_media',
+
 ]
 
 MIDDLEWARE = [
